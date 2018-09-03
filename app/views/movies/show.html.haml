@@ -1,5 +1,14 @@
 %h1= @movie.title
+
+%p= @movie.rating
+.row
+  .col-md-4
+    %img.img-rounded.movie-poster-show{ src: @movie.poster }
+  .col-md-8
+    = @movie.plot
+
 .jumbotron
   = @movie.description
+
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
