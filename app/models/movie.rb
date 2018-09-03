@@ -14,4 +14,8 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+
+  def api_movie_data
+    @api_data ||= MovieDataRetriever.new.call(title)
+  end
 end
