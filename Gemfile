@@ -16,6 +16,7 @@ gem "uglifier"
 gem "bootsnap", ">= 1.1.0", require: false
 
 gem "rest-client"
+gem 'active_model_serializers', '~>0.9.4'
 
 group :development do
   gem "better_errors"
