@@ -92,4 +92,5 @@ RSpec.configure do |config|
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   config.include Requests::JsonHelpers, type: :request
+  config.include Requests::Authentication, type: :request
 end
