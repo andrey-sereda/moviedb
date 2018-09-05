@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
   resources :comments, only: [:create, :destroy]
+  get '/top_commenters', to: 'top_commenters#index', as: 'top_commenters'
+
 
   namespace :api do
     namespace :v1 do
