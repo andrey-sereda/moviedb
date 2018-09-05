@@ -1,0 +1,10 @@
+- if comments.size > 0
+  %label
+    Comments (#{comments.size})
+
+  -comments.each do |comment|
+    = render 'comments/show', comment: comment
+
+- else
+  %p
+    There are no comments yet

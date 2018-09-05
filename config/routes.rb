@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get :export
     end
   end
+  resources :comments, only: [:create, :destroy]
 
   namespace :api do
     namespace :v1 do
