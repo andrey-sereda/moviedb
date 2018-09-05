@@ -1,0 +1,19 @@
+.row
+  .col-md-8.col-md-offset-2.col-lg-8.col-lg-offset-2
+    %h1.text-center Top Weekly Commenters
+
+    - if @commenters_hash.empty?
+      There were no comments during the last week
+
+    - else
+      .table-responsive
+        %table.table.table-striped
+          %tr
+            %th User
+            %th Number of comments
+          - @commenters_hash.each_pair do |user, number_of_comments|
+            %tr
+              %td
+                = user.name
+              %td
+                = number_of_comments

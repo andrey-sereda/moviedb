@@ -82,3 +82,24 @@ if Movie.count < 100
     )
   end
 end
+
+Rails.logger.info "Creating comments..."
+
+def rand_time(from, to=Time.now)
+  Time.at(rand_in_range(from.to_f, to.to_f))
+end
+
+def rand_in_range(from, to)
+  rand * (to - from) + from
+end
+
+users = User.all
+movies = Movie.all
+200.times do
+  Comment.create(
+    content: Faker::Matz.quote,
+    movie: movies.sample,
+    user: users.sample,
+    created_at: rand_time(14.days.ago)
+  )
+end

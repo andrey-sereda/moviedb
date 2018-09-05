@@ -32,4 +32,13 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
+
+  def self.top_commenters(number_of_days = 7, max_users = 10)
+    Comment.where('comments.created_at >= ?', number_of_days.days.ago)
+        .group(:user)
+        .includes(:user)
+        .order('count_id desc')
+        .limit(max_users)
+        .count('id')
+  end
 end
