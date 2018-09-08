@@ -20,6 +20,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'webmock/rspec'
 
 $: << File.expand_path("app/validators")
 
@@ -93,4 +94,5 @@ RSpec.configure do |config|
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   config.include Requests::JsonHelpers, type: :request
   config.include Requests::Authentication, type: :request
+  config.include StubHelpers, type: :request
 end

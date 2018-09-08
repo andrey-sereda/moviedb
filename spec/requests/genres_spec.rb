@@ -3,6 +3,10 @@ require "rails_helper"
 describe "Genres requests", type: :request do
   let!(:genres) { create_list(:genre, 5, :with_movies) }
 
+  before do
+    define_stubs
+  end
+
   describe "genre list" do
     it "displays only related movies" do
       visit "/genres/" + genres.sample.id.to_s + "/movies"
