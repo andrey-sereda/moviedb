@@ -1,7 +1,12 @@
 require "rails_helper"
+include StubHelpers
 
 describe MovieDataRetriever do
   subject {MovieDataRetriever.new.call(movie.title)}
+
+  before do
+    define_stubs
+  end
 
   context "retrieves the correct data" do
     let(:movie) {Movie.new(title: 'Godfather')}
@@ -40,6 +45,14 @@ describe MovieDataRetriever do
 
     it 'retrieves correct default poster' do
       expect(subject[:poster].to_s).to eq('')
+    end
+  end
+
+  context "handles API timeouts" do
+    let(:movie) {Movie.new(title: 'TimeoutMovie')}
+
+    it 'uses default data' do
+      expect(subject).to include(rating: '-')
     end
   end
 end

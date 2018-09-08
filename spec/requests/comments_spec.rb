@@ -4,6 +4,10 @@ describe "Comments requests", type: :request do
   let!(:movies) {create_list(:movie, 5)}
   let!(:user) {create(:user)}
 
+  before do
+    define_stubs
+  end
+
   describe "comments list" do
     it "displays right title" do
       visit "/movies/#{movies.sample.id}"
