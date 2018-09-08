@@ -25,27 +25,13 @@ describe "Movies API requests", type: :request do
   end
 
   it "sends genre if requested" do
-    %w(1 true).each do |include_genre_value|
-      get "/api/v1/movies?include_genre=#{include_genre_value}"
+    get "/api/v1/movies_with_genre"
 
-      expect(json_response['movies'][0]).to include('genre')
+    expect(json_response['movies'][0]).to include('genre')
 
-      get "/api/v1/movies/#{@movies.sample.id}?include_genre=#{include_genre_value}"
+    get "/api/v1/movies_with_genre/#{@movies.sample.id}"
 
-      expect(json_response['movie']).to include('genre')
-    end
-  end
-
-  it "sends no genre if requested in a wrong way" do
-    %w(0 false nottrue).each do |include_genre_value|
-      get "/api/v1/movies?include_genre=#{include_genre_value}"
-
-      expect(json_response['movies'][0]).not_to include('genre')
-
-      get "/api/v1/movies/#{@movies.sample.id}?include_genre=#{include_genre_value}"
-
-      expect(json_response['movie']).not_to include('genre')
-    end
+    expect(json_response['movie']).to include('genre')
   end
 
   it "sends correct movie by id" do

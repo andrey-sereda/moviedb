@@ -10,4 +10,8 @@
 
 class Genre < ApplicationRecord
   has_many :movies
+
+  def self.movies_per_genre
+    Movie.group(:genre_id).count
+  end
 end
